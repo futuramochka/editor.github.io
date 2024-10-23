@@ -1,0 +1,81 @@
+.text-reader{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 50px;
+
+}
+.codex-editor{
+    border: 2px dotted rgb(53, 199, 155);
+    border-radius: 10px;
+}
+.inner_button{
+    padding: 50px;
+    grid-area: 1/2;
+    margin-bottom: 10px;
+
+    display: grid;
+    height: 30px;
+    margin-top: 30px;
+}
+.textarea{
+    grid-area: 2/2;
+    width: 100%;
+    min-height: 300px;
+    height: auto;
+}
+.cdx-marker {
+    color: rgba(255, 10, 182, 0.29);
+    padding: 3px 0;
+}
+.ce-inline-toolbar__actions{
+    display: grid;
+}
+
+.plus_button{
+    grid-area: 1/2;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+
+    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 50%;
+}
+
+.plus_button span{
+    position: relative;
+    bottom: 12px;
+    right: 2.5px;
+}
+
+.plus_button p{
+    font-size: 15px;
+    width: 160px;
+    position: relative;
+    bottom: 42px;
+    left: 20px;
+    color: red;
+}
+
+.d-no{
+    visibility: hidden;
+}
+
+.d-bl{
+    visibility: visible;
+}
+
+.get-text{
+    grid-area: 1/1;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    width: 250px;
+    height: 50px;
+}
+
+.get-text span{
+    position: relative;
+    top: 10px;
+}
