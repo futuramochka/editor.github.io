@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="mark.css">
+    <link rel="stylesheet" href="simple-image.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="text-reader">
+        <button type="button" class="btn btn-primary plus_button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <span>+</span><p>Добавить кнопку</p>
+        </button>
+        <button class="get-text" type="button"><img src="node_modules/paperclip_309037.png" alt="getFile" width="30" height="30"><span>Загрузить файл</span></button>
+        <div class="inner_button"></div>
+        <div class="text_area" id="editorjs"></div> 
+    </section>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Добавить цвет и название</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body list-group">
+                <input class="list-group-item color-button" type="color" name="color_field" id="colorButton"><label for="colorButton">Выберите цвет кнопки</label>
+                <input class="list-group-item name-button" type="text" placeholder="Введите названия кнопки" name="text_field" id="textButton">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            <button type="button" class="btn btn-primary button-save">Сохранить данные</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/editorjs-html/build/edjsHTML.browser.js"></script>
+    <script src="node_modules/editorjs-parser/build/Parser.browser.js"></script>
+    <script src="node_modules/editorjs.mjs"></script>
+    <script src="node_modules/editorjs.umd.js"></script>
+    <script src="mark-class.js"></script>
+    <script src="simple-image.js"></script>
+    <script>
+        const editor = new EditorJS({
+            holder: 'editorjs',
+            autofocus: true,
+            tools: {
+                    mark: MarkerTool
+            },
+            placeholder : 'Давайте напишем потрясающую историю!',
+            onChange: (api, event) => {
+                editor.save().then((outputData) => {
+                    const parser = new edjsParser();
+                    const contents = parser.parse(outputData);
+                    //console.log(markup);
+                    let ButtonGetFile = document.querySelector('.get-text')
+                    let fileHandle;
+                    ButtonGetFile.addEventListener('click', async () => {
+                        //// Destructure the one-element array.
+                        //[fileHandle] = await window.showOpenFilePicker();
+                        //// Do something with the file handle.
+                        //const file = await fileHandle.getFile();
+                        //const contents = await file.text();
+                        //
+                        //let textArea = document.querySelector('.ce-paragraph.cdx-block');
+                        //textArea.innerHTML = contents;
+                        async function getNewFileHandle() {
+                        const options = {
+                            types: [
+                            {
+                                description: 'Text Files',
+                                accept: {
+                                'text/plain': ['.txt'],
+                                },
+                            },
+                            ],
+                        };
+                        const handle = await window.showSaveFilePicker(options);
+                        return handle;
+                        }
+
+                        let fileHandle = getNewFileHandle();
+                        // fileHandle is an instance of FileSystemFileHandle..
+                        async function writeFile(fileHandle, contents) {
+                        // Create a FileSystemWritableFileStream to write to.
+                        const writable = await fileHandle.createWritable();
+                        // Write the contents of the file to the stream.
+                        await writable.write(contents);
+                        // Close the file and write the contents to disk.
+                        await writable.close();
+                        }
+                        writeFile(fileHandle, contents);
+                    });
+                }).catch((error) => {
+                    console.log('Saving failed: ', error)
+                });
+            },
+        });
+    </script>
+    <script>
+        let color = document.querySelector('.color-button');
+        let text = document.querySelector('.name-button');
+        let buttonSaveData = document.querySelector('.button-save');
+        let blockButtonHiddenText = document.querySelector('.inner_button');
+
+
+        buttonSaveData.addEventListener('click', (event) => {
+            console.log('save'+' '+color.value+' '+text.value);
+            createButtonHiddenText(color.value,text);
+            color.value = null;
+            text.value = '';
+        });
+        function highlightFunc(evt, name){
+            let highlightButton = document.querySelectorAll('.button-highlight');
+            highlightButton.forEach(elem => {
+                if(elem.innerHTML !== name){
+                    elem.toggleAttribute('disabled');
+                }
+            })
+            console.log('Это работает '+ evt);
+            let paragraf = document.querySelectorAll('.ce-paragraph');
+            console.log(paragraf)
+            paragraf.forEach(item => {
+                console.log(item);
+                let childTag = item.querySelectorAll('mark');
+                console.log(childTag);
+                item.classList.toggle('d-no');
+                if(childTag.length !== 0){
+                    childTag.forEach(elem => {
+                        console.log(elem.style.color);
+                        if(evt === elem.style.color){
+                            elem.classList.toggle('d-bl');
+                        }
+                    })
+                }
+            })
+        }
+        function createButtonHiddenText(colorForButton,textForButton){
+            let button = document.createElement('button');
+            button.type = 'button';
+            button.classList.add('btn', 'btn-light', 'button-highlight');
+            button.style.color = '#fff';
+            button.style.marginTop = '10px';
+            button.style.backgroundColor = colorForButton;
+            button.setAttribute('onclick', 'highlightFunc(this.style.backgroundColor, this.innerHTML, this.style.color)');
+            button.innerHTML = textForButton.value;
+            console.log(button);
+            blockButtonHiddenText.appendChild(button);
+        }
+    </script>
+    <script>
+        
+    </script>
+</body>
+</html>
