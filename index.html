@@ -59,7 +59,7 @@
                 editor.save().then((outputData) => {
                     const parser = new edjsParser();
                     const contents = parser.parse(outputData);
-                    //console.log(markup);
+                    console.log(typeof(markup));
                     let ButtonGetFile = document.querySelector('.get-text')
                     let fileHandle;
                     ButtonGetFile.addEventListener('click', async () => {
