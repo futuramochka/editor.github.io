@@ -83,7 +83,7 @@
                             const handle = await window.showSaveFilePicker(options);
                             return handle;
                             }
-                            let fileHandle = await getNewFileHandle();
+                            let fileHandle = getNewFileHandle();
 
                             // fileHandle is an instance of FileSystemFileHandle..
                             async function writeFile(fileHandle, contents) {
@@ -95,7 +95,7 @@
                             await writable.close();
                             }
 
-                            await writeFile(fileHandle, contents)
+                            writeFile(fileHandle, contents)
                             console.log(contents)
                         
                     }).catch((error) => {
