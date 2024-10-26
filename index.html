@@ -59,48 +59,48 @@
             },
             placeholder : 'Давайте напишем потрясающую историю!',
             onChange: (api,event) => { //изменили
-                editor.save().then((outputData) => {
-                    let ButtonGetFile = document.querySelector('.get-text');
-                    let fileHandle;
-                    ButtonGetFile.addEventListener('click', async (event) => {
-                        const parser = new edjsParser();
-                        const contents = parser.parse(outputData);
-                        console.log(contents);
-
-                        event.preventDefault();// Здесь выгрузка файла
-                        console.log('Выгрузили файл');
-                        async function getNewFileHandle() {
-                        const options = {
-                            types: [
-                            {
-                                description: 'Text Files',
-                                accept: {
-                                'text/plain': ['.txt'],
-                                },
-                            },
-                            ],
-                        };
+                let ButtonGetFile = document.querySelector('.get-text');
+                ButtonGetFile.addEventListener('click', async (event) => {
+                    event.preventDefault();// Здесь выгрузка файла
+                    editor.save().then((outputData) => {
                         
-                        const handle = await window.showSaveFilePicker(options);
-                        return handle;
-                        }
-                        let fileHandle = await getNewFileHandle();
+                            const parser = new edjsParser();
+                            const contents = parser.parse(outputData);
+                            console.log(contents);
+                            console.log('Выгрузили файл');
+                            async function getNewFileHandle() {
+                            const options = {
+                                types: [
+                                {
+                                    description: 'Text Files',
+                                    accept: {
+                                    'text/plain': ['.txt'],
+                                    },
+                                },
+                                ],
+                            };
+                            
+                            const handle = await window.showSaveFilePicker(options);
+                            return handle;
+                            }
+                            let fileHandle = await getNewFileHandle();
 
-                        // fileHandle is an instance of FileSystemFileHandle..
-                        async function writeFile(fileHandle, contents) {
-                        // Create a FileSystemWritableFileStream to write to.
-                        const writable = await fileHandle.createWritable();
-                        // Write the contents of the file to the stream.
-                        await writable.write(contents);
-                        // Close the file and write the contents to disk.
-                        await writable.close();
-                        }
+                            // fileHandle is an instance of FileSystemFileHandle..
+                            async function writeFile(fileHandle, contents) {
+                            // Create a FileSystemWritableFileStream to write to.
+                            const writable = await fileHandle.createWritable();
+                            // Write the contents of the file to the stream.
+                            await writable.write(contents);
+                            // Close the file and write the contents to disk.
+                            await writable.close();
+                            }
 
-                        await writeFile(fileHandle, contents)
-                        console.log(contents)
+                            await writeFile(fileHandle, contents)
+                            console.log(contents)
+                        
+                    }).catch((error) => {
+                        console.log('Saving failed: ', error)
                     });
-                }).catch((error) => {
-                    console.log('Saving failed: ', error)
                 });
             },
         });
