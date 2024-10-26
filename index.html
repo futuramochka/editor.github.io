@@ -65,8 +65,8 @@
                     let fileHandle;
                     ButtonGetFile.addEventListener('click', (event) => {
                         if ('showOpenFilePicker' in self) {
-                            [fileHandle] =  window.showOpenFilePicker();
-                            const file =  fileHandle.getFile();
+                            [fileHandle] = window.showOpenFilePicker();
+                            const file = fileHandle.getFile();
                             const contents =  file.text();
                             textArea.innerHTML = contents;
                         }
