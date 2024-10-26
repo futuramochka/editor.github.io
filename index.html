@@ -67,7 +67,21 @@
                     let fileHandle;
                     ButtonGetFile.addEventListener('click', async (event) => {
                         event.preventDefault();// Здесь выгрузка файла
-                        console.log('Выгрузили файл')
+                        console.log('Выгрузили файл');
+                        async function getNewFileHandle() {
+                        const options = {
+                            types: [
+                            {
+                                description: 'Text Files',
+                                accept: {
+                                'text/plain': ['.txt'],
+                                },
+                            },
+                            ],
+                        };
+                        const handle = await window.showSaveFilePicker(options);
+                        return handle;
+                        }
                     });
                 }).catch((error) => {
                     console.log('Saving failed: ', error)
