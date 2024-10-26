@@ -63,7 +63,10 @@
                     let ButtonGetFile = document.querySelector('.get-text')
                     let fileHandle;
                     ButtonGetFile.addEventListener('click', async () => {
-                        console.log('hello babe')
+                        if ('showOpenFilePicker' in self) {
+                        // The `showOpenFilePicker()` method of the File System Access API is supported.
+                            console.log('yes fielpicker is run')
+                        }
                     });
                 }).catch((error) => {
                     console.log('Saving failed: ', error)
