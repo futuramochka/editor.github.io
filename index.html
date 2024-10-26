@@ -68,6 +68,7 @@
                     let fileHandle;
                     ButtonGetFile.addEventListener('click', async (event) => {
                         event.preventDefault();// Здесь выгрузка файла
+                        console.log('Выгрузили файл')
                     });
                 }).catch((error) => {
                     console.log('Saving failed: ', error)
