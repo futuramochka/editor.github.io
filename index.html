@@ -63,11 +63,11 @@
                     let ButtonGetFile = document.querySelector('.get-text');
                     let textArea = document.querySelector('.ce-paragraph ');
                     let fileHandle;
-                    ButtonGetFile.addEventListener('click', async () => {
+                    ButtonGetFile.addEventListener('click', (event) => {
                         if ('showOpenFilePicker' in self) {
-                            [fileHandle] = await window.showOpenFilePicker();
-                            const file = await fileHandle.getFile();
-                            const contents = await file.text();
+                            [fileHandle] =  window.showOpenFilePicker();
+                            const file =  fileHandle.getFile();
+                            const contents =  file.text();
                             textArea.innerHTML = contents;
                         }
                     });
