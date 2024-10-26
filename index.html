@@ -60,12 +60,15 @@
                     const parser = new edjsParser();
                     const contents = parser.parse(outputData);
                     console.log(typeof(contents));
-                    let ButtonGetFile = document.querySelector('.get-text')
+                    let ButtonGetFile = document.querySelector('.get-text');
+                    let textArea = document.querySelector('.ce-paragraph ');
                     let fileHandle;
                     ButtonGetFile.addEventListener('click', async () => {
                         if ('showOpenFilePicker' in self) {
-                        // The `showOpenFilePicker()` method of the File System Access API is supported.
-                            console.log('yes fielpicker is run')
+                            [fileHandle] = await window.showOpenFilePicker();
+                            const file = await fileHandle.getFile();
+                            const contents = await file.text();
+                            textArea.innerHTML = contents;
                         }
                     });
                 }).catch((error) => {
