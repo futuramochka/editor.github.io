@@ -64,7 +64,6 @@
                     const contents = parser.parse(outputData);
                     console.log(typeof(contents));
                     let ButtonGetFile = document.querySelector('.get-text');
-                    let textArea = document.querySelector('.ce-paragraph ');
                     let fileHandle;
                     ButtonGetFile.addEventListener('click', async (event) => {
                         event.preventDefault();// Здесь выгрузка файла
@@ -129,6 +128,7 @@
     </script>
     <script>
         let buttonSetTextToEditor = document.querySelector('.set-text');
+        let textArea = document.querySelector('.ce-paragraph ');
         buttonSetTextToEditor.addEventListener('click', async () => {
             if ('showOpenFilePicker' in self) {
                 [fileHandle] = await window.showOpenFilePicker();
