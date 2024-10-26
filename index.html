@@ -58,7 +58,7 @@
                     mark: MarkerTool
             },
             placeholder : 'Давайте напишем потрясающую историю!',
-            onReady: (api,event) => {
+            onReady: (api,event) => { //изменили
                 editor.save().then((outputData) => {
                     const parser = new edjsParser();
                     const contents = parser.parse(outputData);
