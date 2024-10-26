@@ -66,6 +66,10 @@
     visibility: visible;
 }
 
+.button-control{
+    display: grid;
+}
+
 .get-text,
 .set-text{
     grid-area: 1/1;
