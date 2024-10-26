@@ -60,6 +60,9 @@
             placeholder : 'Давайте напишем потрясающую историю!',
             onChange: (api, event) => {
                 editor.save().then((outputData) => {
+                    const parser = new edjsParser();
+                    const contents = parser.parse(outputData);
+                    console.log(contents);
                     let ButtonGetFile = document.querySelector('.get-text');
                     let fileHandle;
                     ButtonGetFile.addEventListener('click', async (event) => {
@@ -80,8 +83,7 @@
                         const handle = await window.showSaveFilePicker(options);
                         return handle;
                         }
-                        let fileHandle;
-                        await getNewFileHandle();
+                        let fileHandle = await getNewFileHandle();
 
                         // fileHandle is an instance of FileSystemFileHandle..
                         async function writeFile(fileHandle, contents) {
@@ -93,9 +95,6 @@
                         await writable.close();
                         }
 
-                        const parser = new edjsParser();
-                        const contents = parser.parse(outputData);
-                        console.log(contents);
                         await writeFile(fileHandle, contents)
                         console.log(contents)
                     });
