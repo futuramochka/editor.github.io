@@ -58,8 +58,8 @@
                     mark: MarkerTool
             },
             placeholder : 'Давайте напишем потрясающую историю!',
-            onChange: (api, event) => {
-                /*editor.save().then((outputData) => {
+            onReady: () => {
+                editor.save().then((outputData) => {
                     const parser = new edjsParser();
                     const contents = parser.parse(outputData);
                     console.log(contents);
@@ -100,7 +100,7 @@
                     });
                 }).catch((error) => {
                     console.log('Saving failed: ', error)
-                });*/
+                });
             },
         });
     </script>
@@ -167,7 +167,7 @@
             }
         });
 
-        editor.save().then((outputData) => {
+        /*editor.save().then((outputData) => {
             const parser = new edjsParser();
             const contents = parser.parse(outputData);
             console.log(contents);
@@ -208,7 +208,7 @@
             });
         }).catch((error) => {
             console.log('Saving failed: ', error)
-        });
+        });*/
     </script>
 </body>
 </html>
