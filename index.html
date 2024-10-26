@@ -60,9 +60,6 @@
             placeholder : 'Давайте напишем потрясающую историю!',
             onChange: (api, event) => {
                 editor.save().then((outputData) => {
-                    const parser = new edjsParser();
-                    const contents = parser.parse(outputData);
-                    console.log(typeof(contents));
                     let ButtonGetFile = document.querySelector('.get-text');
                     let fileHandle;
                     ButtonGetFile.addEventListener('click', async (event) => {
@@ -93,7 +90,12 @@
                         // Close the file and write the contents to disk.
                         await writable.close();
                         }
+
+                        const parser = new edjsParser();
+                        const contents = parser.parse(outputData);
+                        console.log(contents);
                         await writeFile(fileHandle, contents)
+                        console.log(contents)
                     });
                 }).catch((error) => {
                     console.log('Saving failed: ', error)
