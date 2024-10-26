@@ -76,10 +76,11 @@
                             },
                             ],
                         };
-                        let fileHandle;
+                        
                         const handle = await window.showSaveFilePicker(options);
                         return handle;
                         }
+                        let fileHandle;
                         await getNewFileHandle();
 
                         // fileHandle is an instance of FileSystemFileHandle..
