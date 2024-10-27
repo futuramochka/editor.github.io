@@ -62,8 +62,10 @@
                 let tik = +1;
                 let ButtonGetFile = document.querySelector('.get-text');
                 editor.save().then((outputData) => {
+                    let arrayCikle = [];
+                    arrayCikle.push(outputData);
                     ButtonGetFile.addEventListener('click', async (event) => {
-                        console.log(outputData)
+                        console.log(arrayCikle)
                         /*event.preventDefault();// Здесь выгрузка файла
                                 const parser = new edjsParser();
                                 const contents = parser.parse(outputData);
