@@ -59,9 +59,10 @@
             },
             placeholder : 'Давайте напишем потрясающую историю!',
             onChange: (api,event) => { //изменили
+                console.log(event)
                 let ButtonGetFile = document.querySelector('.get-text');
                 ButtonGetFile.addEventListener('click', async (event) => {
-                    event.preventDefault();// Здесь выгрузка файла
+                    /*event.preventDefault();// Здесь выгрузка файла
                     editor.save().then((outputData) => {
                         
                             const parser = new edjsParser();
@@ -100,7 +101,7 @@
                         
                     }).catch((error) => {
                         console.log('Saving failed: ', error)
-                    });
+                    });*/
                 });
             },
         });
