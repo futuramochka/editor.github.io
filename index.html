@@ -71,7 +71,7 @@
                         const parser = new edjsParser();
                         let elemArr = arrayCikle[arrayCikle.length-1];
                         console.log(elemArr)
-                        const contents = parser.parse(elemArr.blocks);
+                        const contents = parser.parse(elemArr);
                         if(contents){
                             async function getNewFileHandle() {
                             const options = {
