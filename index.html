@@ -51,6 +51,7 @@
     <script src="./mark-class.js"></script>
     <script src="./simple-image.js"></script>
     <script>
+        let arrayCikle = [];
         const editor = new EditorJS({
             holder: 'editorjs',
             autofocus: true,
@@ -62,9 +63,9 @@
                 let tik = +1;
                 let ButtonGetFile = document.querySelector('.get-text');
                 editor.save().then((outputData) => {
-                    let arrayCikle = [];
                     arrayCikle.push(outputData);
                     ButtonGetFile.addEventListener('click', async (event) => {
+                        console.log(arrayCikle)
                         /*event.preventDefault();// Здесь выгрузка файла
                                 const parser = new edjsParser();
                                 const contents = parser.parse(outputData);
@@ -107,7 +108,6 @@
         });
     </script>
     <script>
-        console.log(outputData);
         let color = document.querySelector('.color-button');
         let text = document.querySelector('.name-button');
         let buttonSaveData = document.querySelector('.button-save');
