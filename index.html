@@ -69,7 +69,7 @@
                         console.log("Data " + outputData)
                         event.preventDefault();// Здесь выгрузка файла
                         const parser = new edjsParser();
-                        let elemArr = arrayCikle[arrayCikle.length-1];
+                        var elemArr = arrayCikle[arrayCikle.length-1];
                         console.log(elemArr)
                         const contents = parser.parse(elemArr);
                         if(contents){
@@ -110,6 +110,7 @@
         });
     </script>
     <script>
+        concole.log(elemArr + "  Получили за скобками")
         let color = document.querySelector('.color-button');
         let text = document.querySelector('.name-button');
         let buttonSaveData = document.querySelector('.button-save');
