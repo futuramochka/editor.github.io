@@ -65,7 +65,8 @@
                 editor.save().then((outputData) => {
                     arrayCikle.push(outputData);
                     ButtonGetFile.addEventListener('click', async (event) => {
-                        console.log(arrayCikle)
+                        console.log(arrayCikle);
+                        console.log("Data " + outputData)
                         event.preventDefault();// Здесь выгрузка файла
                         const parser = new edjsParser();
                         let elemArr = arrayCikle[arrayCikle.length-1];
@@ -99,7 +100,7 @@
                             await writable.close();
                             }
 
-                            writeFile(fileHandle, contents)
+                            writeFile(fileHandle, contents);
                         }
                     });
                 }).catch((error) => {
