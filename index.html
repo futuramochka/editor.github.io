@@ -68,7 +68,7 @@
                         console.log(arrayCikle)
                         event.preventDefault();// Здесь выгрузка файла
                         const parser = new edjsParser();
-                        const contents = parser.parse(arrayCikle);
+                        const contents = parser.parse(arrayCikle[0]);
                         console.log(contents);
                         console.log('Выгрузили файл');
                         if(contents){
