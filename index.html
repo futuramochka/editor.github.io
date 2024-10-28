@@ -69,10 +69,7 @@
                         event.preventDefault();// Здесь выгрузка файла
                         const parser = new edjsParser();
                         const contents = parser.parse(arrayCikle[0]);
-                        console.log(contents);
-                        console.log('Выгрузили файл');
                         if(contents){
-                            
                             async function getNewFileHandle() {
                             const options = {
                                 types: [
@@ -101,7 +98,6 @@
                             }
 
                             writeFile(fileHandle, contents)
-                            console.log(contents)
                         }
                     });
                 }).catch((error) => {
