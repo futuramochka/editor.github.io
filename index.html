@@ -66,40 +66,41 @@
                     arrayCikle.push(outputData);
                     ButtonGetFile.addEventListener('click', async (event) => {
                         console.log(arrayCikle)
-                        /*event.preventDefault();// Здесь выгрузка файла
-                                const parser = new edjsParser();
-                                const contents = parser.parse(outputData);
-                                console.log(contents);
-                                console.log('Выгрузили файл');
-                                async function getNewFileHandle() {
-                                const options = {
-                                    types: [
-                                    {
-                                        description: 'Text Files',
-                                        accept: {
-                                        'text/plain': ['.txt'],
-                                        },
+                        event.preventDefault();// Здесь выгрузка файла
+                        const parser = new edjsParser();
+                        const contents = parser.parse(arrayCikle);
+                        console.log(contents);
+                        console.log('Выгрузили файл');
+                        if(contents)
+                            async function getNewFileHandle() {
+                            const options = {
+                                types: [
+                                {
+                                    description: 'Text Files',
+                                    accept: {
+                                    'text/plain': ['.txt'],
                                     },
-                                    ],
-                                };
-                                
-                                const handle = await window.showSaveFilePicker(options);
-                                return handle;
-                                }
-                                let fileHandle = getNewFileHandle();
+                                },
+                                ],
+                            };
+                            
+                            const handle = await window.showSaveFilePicker(options);
+                            return handle;
+                            }
+                            let fileHandle = getNewFileHandle();
 
-                                // fileHandle is an instance of FileSystemFileHandle..
-                                async function writeFile(fileHandle, contents) {
-                                // Create a FileSystemWritableFileStream to write to.
-                                const writable = await fileHandle.createWritable();
-                                // Write the contents of the file to the stream.
-                                await writable.write(contents);
-                                // Close the file and write the contents to disk.
-                                await writable.close();
-                                }
+                            // fileHandle is an instance of FileSystemFileHandle..
+                            async function writeFile(fileHandle, contents) {
+                            // Create a FileSystemWritableFileStream to write to.
+                            const writable = await fileHandle.createWritable();
+                            // Write the contents of the file to the stream.
+                            await writable.write(contents);
+                            // Close the file and write the contents to disk.
+                            await writable.close();
+                            }
 
-                                writeFile(fileHandle, contents)
-                                console.log(contents)*/
+                            writeFile(fileHandle, contents)
+                            console.log(contents)
                     });
                 }).catch((error) => {
                         console.log('Saving failed: ', error)
