@@ -71,7 +71,8 @@
                         const contents = parser.parse(arrayCikle);
                         console.log(contents);
                         console.log('Выгрузили файл');
-                        if(contents)
+                        if(contents){
+                            
                             async function getNewFileHandle() {
                             const options = {
                                 types: [
@@ -101,6 +102,7 @@
 
                             writeFile(fileHandle, contents)
                             console.log(contents)
+                        }
                     });
                 }).catch((error) => {
                         console.log('Saving failed: ', error)
