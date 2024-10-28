@@ -68,7 +68,8 @@
                         console.log(arrayCikle)
                         event.preventDefault();// Здесь выгрузка файла
                         const parser = new edjsParser();
-                        const contents = parser.parse(arrayCikle[0]);
+                        let elemArr = arrayCickle[arrayCikle.length-1];
+                        const contents = parser.parse(elemArr);
                         if(contents){
                             async function getNewFileHandle() {
                             const options = {
