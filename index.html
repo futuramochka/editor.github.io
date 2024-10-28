@@ -52,6 +52,7 @@
     <script src="./simple-image.js"></script>
     <script>
         let arrayCikle = [];
+        var elemArr;
         const editor = new EditorJS({
             holder: 'editorjs',
             autofocus: true,
@@ -69,7 +70,7 @@
                         console.log("Data " + outputData)
                         event.preventDefault();// Здесь выгрузка файла
                         const parser = new edjsParser();
-                        var elemArr = arrayCikle[arrayCikle.length-1];
+                        elemArr = arrayCikle[arrayCikle.length-1];
                         console.log(elemArr)
                         const contents = parser.parse(elemArr);
                         if(contents){
