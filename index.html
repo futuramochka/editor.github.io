@@ -63,6 +63,7 @@
                 let ButtonGetFile = document.querySelector('.get-text');
                 editor.save().then((outputData) => {
                     lastOutputDataCikle.push('true');
+                    console.log(lastOutputDataCikle)
                     if(lastOutputDataCikle[lastOutputDataCikle - 1]){
                             console.log(outputData)
                     }
