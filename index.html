@@ -62,11 +62,7 @@
             onChange: (api,event) => { //изменили
                 let ButtonGetFile = document.querySelector('.get-text');
                 editor.save().then((outputData) => {
-                    lastOutputDataCikle.push('true');
-                    
-                    if(lastOutputDataCikle[lastOutputDataCikle - 1]){
-                            console.log(outputData)
-                    }
+                    var lastOutputData = outputData;
                     ButtonGetFile.addEventListener('click', async (ev) => {
                         ev.preventDefault();// Здесь выгрузка файла
                         console.log(outputData)
@@ -110,6 +106,7 @@
         });
     </script>
     <script>
+        console.log(lastOutputData);
         let color = document.querySelector('.color-button');
         let text = document.querySelector('.name-button');
         let buttonSaveData = document.querySelector('.button-save');
