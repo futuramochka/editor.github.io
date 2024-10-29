@@ -51,8 +51,7 @@
     <script src="./mark-class.js"></script>
     <script src="./simple-image.js"></script>
     <script>
-        let arrayCikle = [];
-        var elemArr;
+        let lastOutputDataCikle = [];
         const editor = new EditorJS({
             holder: 'editorjs',
             autofocus: true,
@@ -61,19 +60,17 @@
             },
             placeholder : 'Давайте напишем потрясающую историю!',
             onChange: (api,event) => { //изменили
-                let tik = +1;
                 let ButtonGetFile = document.querySelector('.get-text');
                 editor.save().then((outputData) => {
-                    arrayCikle.push(outputData);
-                    ButtonGetFile.addEventListener('click', async (event) => {
-                        console.log(arrayCikle);
-                        console.log("Data " + outputData)
-                        event.preventDefault();// Здесь выгрузка файла
-                        const parser = new edjsParser();
-                        elemArr = arrayCikle[arrayCikle.length-1];
-                        console.log(elemArr)
-                        const contents = parser.parse(elemArr);
-                        if(contents){
+                    lastOutputDataCikle.push(true);
+                    ButtonGetFile.addEventListener('click', async (ev) => {
+                        ev.preventDefault();// Здесь выгрузка файла
+                        if(lastOutputDataCikle[lastOutputDataCikle - 1]){
+                            console.log(outputData)
+                        }
+                        /*const parser = new edjsParser();
+                        const contents = parser.parse(elemArr);*/
+                        /*&if(contents){
                             async function getNewFileHandle() {
                             const options = {
                                 types: [
@@ -102,7 +99,7 @@
                             }
 
                             writeFile(fileHandle, contents);
-                        }
+                        }*/
                     });
                 }).catch((error) => {
                         console.log('Saving failed: ', error)
