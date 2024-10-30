@@ -60,6 +60,7 @@
             },
             placeholder : 'Давайте напишем потрясающую историю!',
             onChange: (api,event) => { //изменили
+                console.log(api + '  '+ event);
                 let ButtonGetFile = document.querySelector('.get-text');
                 editor.save().then((outputData) => {
                     var lastOutputData = outputData;
