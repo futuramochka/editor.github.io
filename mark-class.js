@@ -8,7 +8,8 @@ class MarkerTool {
   static get sanitize() {
     return {
         mark: {
-            class: 'cdx-marker'
+            class: 'cdx-marker',
+            style: true
         }
     };
   }
