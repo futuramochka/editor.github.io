@@ -87,8 +87,8 @@
                             const fileHandle = await window.showSaveFilePicker(options);
                             return fileHandle;
                             }
-                            getNewFileHandle();
-                            writeFile(fileHandle, contents);
+                            
+                            writeFile(getNewFileHandle(), contents);
                             // fileHandle is an instance of FileSystemFileHandle..
                             async function writeFile(fileHandle, contents) {
                             // Create a FileSystemWritableFileStream to write to.
