@@ -87,7 +87,7 @@
                             const handle = await window.showSaveFilePicker(options);
                             return handle;
                             }
-
+                            let fileHandle = getNewFileHandle();
                             // fileHandle is an instance of FileSystemFileHandle..
                             async function writeFile(fileHandle, contents) {
                             // Create a FileSystemWritableFileStream to write to.
@@ -97,7 +97,6 @@
                             // Close the file and write the contents to disk.
                             await writable.close();
                             }
-                            let fileHandle = getNewFileHandle();
                             writeFile(fileHandle, contents);
                         }).catch((еrror) => {
                                 console.log('Saving failed: ', еrror)
