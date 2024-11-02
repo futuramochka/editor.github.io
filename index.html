@@ -88,6 +88,7 @@
                             return handle;
                             }
                             let fileHandle = getNewFileHandle();
+                            writeFile(fileHandle, contents);
                             // fileHandle is an instance of FileSystemFileHandle..
                             async function writeFile(fileHandle, contents) {
                             // Create a FileSystemWritableFileStream to write to.
@@ -97,7 +98,7 @@
                             // Close the file and write the contents to disk.
                             await writable.close();
                             }
-                            writeFile(fileHandle, contents);
+                            
                         }).catch((еrror) => {
                                 console.log('Saving failed: ', еrror)
                         });
