@@ -84,10 +84,10 @@
                                 ],
                             };
                             
-                            const handle = await window.showSaveFilePicker(options);
-                            return handle;
+                            const fileHandle = await window.showSaveFilePicker(options);
+                            return fileHandle;
                             }
-                            let fileHandle = getNewFileHandle();
+                            getNewFileHandle();
                             writeFile(fileHandle, contents);
                             // fileHandle is an instance of FileSystemFileHandle..
                             async function writeFile(fileHandle, contents) {
