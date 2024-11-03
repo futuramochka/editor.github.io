@@ -65,7 +65,7 @@
             onReady: (api,event) => { //изменили
                 //console.log(event);
                 let ButtonGetFile = document.querySelector('.get-text');
-                
+                let fileHandle;
                     ButtonGetFile.addEventListener('click', (ev) => {
                         editor.save().then((outputData) => {
                             const parser = new edjsParser();
@@ -84,11 +84,11 @@
                                 ],
                             };
                             
-                            const fileHandle = await window.showSaveFilePicker(options);
-                            return fileHandle;
+                            const handle = await window.showSaveFilePicker(options);
+                            return handle;
                             }
                             
-                            writeFile(getNewFileHandle(), contents);
+                            writeFile(fileHandle, contents);
                             // fileHandle is an instance of FileSystemFileHandle..
                             async function writeFile(fileHandle, contents) {
                             // Create a FileSystemWritableFileStream to write to.
