@@ -72,37 +72,8 @@
                             const contents = parser.parse(outputData);
                             
                             console.log(contents);
-                            async function getNewFileHandle() {
-                            const options = {
-                                types: [
-                                {
-                                    description: 'Text Files',
-                                    accept: {
-                                    'text/plain': ['.txt'],
-                                    },
-                                },
-                                ],
-                            };
+                            fileHandFix(content);
                             
-                            const handle = await window.showSaveFilePicker(options);
-                            return handle;
-                            }
-                            console.log(getNewFileHandle());
-
-                            if(getNewFileHandle()){
-                                console.log(getNewFileHandle())
-                            }
-                            
-                            writeFile(fileHandle, contents);
-                            // fileHandle is an instance of FileSystemFileHandle..
-                            async function writeFile(fileHandle, contents) {
-                            // Create a FileSystemWritableFileStream to write to.
-                            const writable = await fileHandle.createWritable();
-                            // Write the contents of the file to the stream.
-                            await writable.write(contents);
-                            // Close the file and write the contents to disk.
-                            await writable.close();
-                            }
                             
                         }).catch((еrror) => {
                                 console.log('Saving failed: ', еrror)
@@ -176,6 +147,34 @@
                 textArea.innerHTML = contents; //здесь загрузка файла
             }
         });
+        function fileHandFix(fileHandle, content){
+            async function getNewFileHandle() {
+                const options = {
+                    types: [
+                    {
+                        description: 'Text Files',
+                        accept: {
+                        'text/plain': ['.txt'],
+                        },
+                    },
+                    ],
+                };
+                
+                const handle = await window.showSaveFilePicker(options);
+                return handle;
+                }
+                
+                writeFile(fileHandle, contents);
+                // fileHandle is an instance of FileSystemFileHandle..
+                async function writeFile(fileHandle, contents) {
+                // Create a FileSystemWritableFileStream to write to.
+                const writable = await fileHandle.createWritable();
+                // Write the contents of the file to the stream.
+                await writable.write(contents);
+                // Close the file and write the contents to disk.
+                await writable.close();
+                }
+        }
     </script>
 </body>
 </html>
