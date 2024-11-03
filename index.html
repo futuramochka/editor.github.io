@@ -15,8 +15,8 @@
             <span>+</span><p>Добавить кнопку</p>
         </button>
         <div class="button-control">
-            <button class="set-text" type="button" onclick="handlFileFix()"><img src="./paperclip_309037.png" alt="getFile" width="30" height="30"><span>Загрузить файл</span></button>
-            <button class="get-text" type="button" onclick="handlFileFix()"><img src="./downloads.png" alt="getFile" width="30" height="30"><span>Cохранить файл</span></button>
+            <button class="set-text" type="button"><img src="./paperclip_309037.png" alt="getFile" width="30" height="30"><span>Загрузить файл</span></button>
+            <button class="get-text" type="button"><img src="./downloads.png" alt="getFile" width="30" height="30"><span>Cохранить файл</span></button>
         </div>
         <div class="inner_button"></div>
         <div class="text_area" id="editorjs"></div> 
@@ -86,9 +86,6 @@
                             const writable = fileHandle.createWritable();
                             writable.write(contents);
                             writable.close();
-                
-                            
-                            
                         }).catch((еrror) => {
                                 console.log('Saving failed: ', еrror)
                         });
