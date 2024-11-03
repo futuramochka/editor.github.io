@@ -65,14 +65,28 @@
             onReady: (api,event) => { //изменили
                 //console.log(event);
                 let ButtonGetFile = document.querySelector('.get-text');
-                let fileHandle;
                     ButtonGetFile.addEventListener('click', (ev) => {
                         editor.save().then((outputData) => {
                             const parser = new edjsParser();
                             const contents = parser.parse(outputData);
                             
                             console.log(contents);
-                            fileHandFix(contents);
+                            const options = {//настройки сохраняемого файла
+                                types: [
+                                {
+                                    description: 'Text Files',
+                                    accept: {
+                                    'text/plain': ['.txt'],
+                                    },
+                                },
+                                ],
+                            };
+
+                            const fileHandle = window.showSaveFilePicker(options);
+                            const writable = fileHandle.createWritable();
+                            writable.write(contents);
+                            writable.close();
+                
                             
                             
                         }).catch((еrror) => {
@@ -147,35 +161,6 @@
                 textArea.innerHTML = contents; //здесь загрузка файла
             }
         });
-        console.log(fileHandle)
-        function fileHandFix(fileHandle, contents){
-            async function getNewFileHandle() {
-                const options = {
-                    types: [
-                    {
-                        description: 'Text Files',
-                        accept: {
-                        'text/plain': ['.txt'],
-                        },
-                    },
-                    ],
-                };
-                
-                const handle = await window.showSaveFilePicker(options);
-                return handle;
-                }
-                
-                writeFile(fileHandle, contents);
-                // fileHandle is an instance of FileSystemFileHandle..
-                async function writeFile(fileHandle, contents) {
-                // Create a FileSystemWritableFileStream to write to.
-                const writable = await fileHandle.createWritable();
-                // Write the contents of the file to the stream.
-                await writable.write(contents);
-                // Close the file and write the contents to disk.
-                await writable.close();
-                }
-        }
     </script>
 </body>
 </html>
